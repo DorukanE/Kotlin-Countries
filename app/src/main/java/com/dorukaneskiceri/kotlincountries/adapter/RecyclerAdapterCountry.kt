@@ -19,7 +19,7 @@ class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>)
 
     override fun onBindViewHolder(holder: CountryHolder, position: Int) {
         holder.view.textViewCountry.text = arrayListCountries[position].countryName
-        holder.view.textViewCountryContinental.text = arrayListCountries[position].countryContinental
+        holder.view.textViewContinental.text = arrayListCountries[position].countryContinental
     }
 
     override fun getItemCount(): Int {
@@ -33,6 +33,6 @@ class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>)
     fun updateCountryList(newCountryList: List<Country>){
         arrayListCountries.clear()
         arrayListCountries.addAll(newCountryList)
-        notifyDataSetChanged() 
+        notifyDataSetChanged()
     }
 }

@@ -23,7 +23,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewErrror"
+                android:id="@+id/textViewError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Error! Please Try Again."
@@ -43,6 +43,7 @@
                 android:indeterminate="true"
                 android:indeterminateBehavior="cycle"
                 android:indeterminateTint="@color/cardview_dark_background"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/recyclerViewCountries"
                 app:layout_constraintEnd_toEndOf="@+id/recyclerViewCountries"
                 app:layout_constraintStart_toStartOf="@+id/recyclerViewCountries"
