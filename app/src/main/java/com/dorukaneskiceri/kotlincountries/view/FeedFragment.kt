@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dorukaneskiceri.kotlincountries.R
 import com.dorukaneskiceri.kotlincountries.adapter.RecyclerAdapterCountry
@@ -33,7 +34,6 @@ class FeedFragment : Fragment() {
         feedViewModel.refreshLayout()
         recyclerViewCountries.adapter = countryAdapter
         observeLiveData()
-
     }
 
     private fun observeLiveData() {
