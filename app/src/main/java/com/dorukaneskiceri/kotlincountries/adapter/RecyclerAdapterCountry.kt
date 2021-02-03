@@ -7,6 +7,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.dorukaneskiceri.kotlincountries.R
 import com.dorukaneskiceri.kotlincountries.model.Country
+import com.dorukaneskiceri.kotlincountries.util.downloadFormUrl
 import com.dorukaneskiceri.kotlincountries.view.FeedFragmentDirections
 import kotlinx.android.synthetic.main.fragment_country.view.*
 import kotlinx.android.synthetic.main.recycler_view_countries.view.*
@@ -26,6 +27,7 @@ class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>)
             val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment()
             Navigation.findNavController(it).navigate(action)
         }
+        holder.view.imageView.downloadFormUrl(arrayListCountries[position].countryFlagUrl, holder.view.context)
     }
 
     override fun getItemCount(): Int {

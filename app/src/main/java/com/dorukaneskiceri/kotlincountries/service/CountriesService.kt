@@ -1,7 +1,7 @@
 package com.dorukaneskiceri.kotlincountries.service
 
 import com.dorukaneskiceri.kotlincountries.model.Country
-import com.dorukaneskiceri.kotlincountries.utils.Utils
+import com.dorukaneskiceri.kotlincountries.util.Utils
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
