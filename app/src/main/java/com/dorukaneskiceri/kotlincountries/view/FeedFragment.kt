@@ -17,6 +17,7 @@ class FeedFragment : Fragment() {
 
     private lateinit var feedViewModel: FeedViewModel
     private var countryAdapter = RecyclerAdapterCountry(arrayListOf())
+    private var isRefreshing: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +32,15 @@ class FeedFragment : Fragment() {
         feedViewModel = ViewModelProviders.of(this).get(FeedViewModel::class.java)
         recyclerViewCountries.layoutManager = LinearLayoutManager(view.context)
 
-        feedViewModel.refreshLayout()
+        feedViewModel.refreshLayout(isRefreshing)
         recyclerViewCountries.adapter = countryAdapter
+
+        swipeRefreshLayout.setOnRefreshListener {
+            isRefreshing = true
+            feedViewModel.refreshLayout(isRefreshing)
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         observeLiveData()
     }
 
@@ -59,7 +67,6 @@ class FeedFragment : Fragment() {
             loading?.let {
                 if(it){
                     countryLoading.visibility = View.VISIBLE
-                    recyclerViewCountries.visibility = View.INVISIBLE
                     textViewError.visibility = View.INVISIBLE
                 }else{
                     countryLoading.visibility = View.INVISIBLE
