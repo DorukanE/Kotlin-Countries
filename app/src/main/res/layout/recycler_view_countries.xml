@@ -7,11 +7,15 @@
         <variable
             name="country"
             type="com.dorukaneskiceri.kotlincountries.model.Country" />
+        <variable
+            name="clickListener"
+            type="com.dorukaneskiceri.kotlincountries.adapter.CountryClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{clickListener::onClickListener}"
         >
 
         <ImageView
@@ -50,6 +54,16 @@
             app:layout_constraintEnd_toEndOf="@+id/textViewCountry"
             app:layout_constraintStart_toStartOf="@+id/textViewCountry"
             app:layout_constraintTop_toBottomOf="@+id/textViewCountry" />
+
+        <TextView
+            android:id="@+id/textViewCountryUuid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:text="@{String.valueOf(country.countryUuid)}"
+            app:layout_constraintEnd_toEndOf="@+id/textViewCountry"
+            app:layout_constraintStart_toStartOf="@+id/textViewCountry"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

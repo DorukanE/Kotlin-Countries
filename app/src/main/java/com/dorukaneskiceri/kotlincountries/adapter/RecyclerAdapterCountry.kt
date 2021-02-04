@@ -14,7 +14,7 @@ import com.dorukaneskiceri.kotlincountries.view.FeedFragmentDirections
 import kotlinx.android.synthetic.main.fragment_country.view.*
 import kotlinx.android.synthetic.main.recycler_view_countries.view.*
 
-class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>) : RecyclerView.Adapter<RecyclerAdapterCountry.CountryHolder>(){
+class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>) : RecyclerView.Adapter<RecyclerAdapterCountry.CountryHolder>(), CountryClickListener{
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -24,6 +24,7 @@ class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>)
 
     override fun onBindViewHolder(holder: CountryHolder, position: Int) {
         holder.view.country = arrayListCountries[position]
+        holder.view.clickListener = this
     }
 
     override fun getItemCount(): Int {
@@ -38,5 +39,11 @@ class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>)
         arrayListCountries.clear()
         arrayListCountries.addAll(newCountryList)
         notifyDataSetChanged()
+    }
+
+    override fun onClickListener(it: View) {
+        val countryUuid = it.textViewCountryUuid.text.toString().toInt()
+        val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment().setCountryUuid(countryUuid)
+        Navigation.findNavController(it).navigate(action)
     }
 }

@@ -26,7 +26,6 @@ class CountryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             countryUuid = CountryFragmentArgs.fromBundle(it).countryUuid
-            println(countryUuid)
         }
 
         countryViewModel = ViewModelProviders.of(this).get(CountryViewModel::class.java)
