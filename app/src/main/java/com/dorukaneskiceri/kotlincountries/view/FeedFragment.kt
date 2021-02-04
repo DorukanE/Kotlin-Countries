@@ -12,6 +12,7 @@ import com.dorukaneskiceri.kotlincountries.R
 import com.dorukaneskiceri.kotlincountries.adapter.RecyclerAdapterCountry
 import com.dorukaneskiceri.kotlincountries.viewmodel.FeedViewModel
 import kotlinx.android.synthetic.main.fragment_feed.*
+import kotlinx.android.synthetic.main.recycler_view_countries.*
 
 class FeedFragment : Fragment() {
 

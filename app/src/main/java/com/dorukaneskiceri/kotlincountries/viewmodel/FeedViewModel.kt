@@ -48,7 +48,7 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
         launch {
             val dao = CountryDatabase(getApplication()).countryDao().getCountries()
             showCountries(dao)
-            Toast.makeText(getApplication(), "Countries From Room", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(getApplication(), "Countries From Room", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -64,7 +64,7 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
                 .subscribeWith(object : DisposableSingleObserver<List<Country>>() {
                     override fun onSuccess(t: List<Country>) {
                         storeInRoom(t)
-                        Toast.makeText(getApplication(), "Countries From API", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(getApplication(), "Countries From API", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onError(e: Throwable) {
@@ -96,5 +96,10 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
             showCountries(countryList)
         }
         customSharedPref.saveTime(System.nanoTime())
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }

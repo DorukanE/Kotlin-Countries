@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.dorukaneskiceri.kotlincountries.R
+import com.dorukaneskiceri.kotlincountries.util.downloadFormUrl
 import com.dorukaneskiceri.kotlincountries.viewmodel.CountryViewModel
 import kotlinx.android.synthetic.main.fragment_country.*
 
@@ -29,7 +30,7 @@ class CountryFragment : Fragment() {
         }
 
         countryViewModel = ViewModelProviders.of(this).get(CountryViewModel::class.java)
-        countryViewModel.getCountryDetails()
+        countryViewModel.getCountryDetails(countryUuid)
         observeLiveData()
     }
 
@@ -41,6 +42,7 @@ class CountryFragment : Fragment() {
                 textViewCountryContinental.text = it.countryContinental
                 textViewCountryCurrency.text = it.countryCurrency
                 textViewCountryLanguage.text = it.countryLanguage
+                imageView2.downloadFormUrl(it.countryFlagUrl, requireContext())
             }
         })
     }

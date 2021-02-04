@@ -23,8 +23,10 @@ class RecyclerAdapterCountry(private val arrayListCountries: ArrayList<Country>)
     override fun onBindViewHolder(holder: CountryHolder, position: Int) {
         holder.view.textViewCountry.text = arrayListCountries[position].countryName
         holder.view.textViewContinental.text = arrayListCountries[position].countryContinental
+        holder.view.textViewUuid.text = arrayListCountries[position].countryUuid.toString()
+        val countryUuid = holder.view.textViewUuid.text.toString().toInt()
         holder.view.setOnClickListener {
-            val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment()
+            val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment().setCountryUuid(countryUuid)
             Navigation.findNavController(it).navigate(action)
         }
         holder.view.imageView.downloadFormUrl(arrayListCountries[position].countryFlagUrl, holder.view.context)
