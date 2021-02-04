@@ -41,12 +41,6 @@ class CountryFragment : Fragment() {
         countryViewModel.country.observe(viewLifecycleOwner, {country ->
             country?.let {
                 dataBinding.countryDetail = it
-//                textViewCountryName.text = it.countryName
-//                textViewCountryCapital.text = it.countryCapital
-//                textViewCountryContinental.text = it.countryContinental
-//                textViewCountryCurrency.text = it.countryCurrency
-//                textViewCountryLanguage.text = it.countryLanguage
-//                imageView2.downloadFormUrl(it.countryFlagUrl, requireContext())
             }
         })
     }
