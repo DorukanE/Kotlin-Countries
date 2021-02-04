@@ -37,7 +37,7 @@ class FeedFragment : Fragment() {
 
         swipeRefreshLayout.setOnRefreshListener {
             isRefreshing = true
-            feedViewModel.refreshLayout(isRefreshing)
+            feedViewModel.refreshFromApi(isRefreshing)
             swipeRefreshLayout.isRefreshing = false
         }
 
