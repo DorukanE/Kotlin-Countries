@@ -32,6 +32,6 @@ private fun imagePlaceHolder(context: Context): CircularProgressDrawable{
 }
 
 @BindingAdapter(value = ["android:downloadUrl"])
-fun downloadImage(view: ImageView, url: String){
+fun downloadImage(view: ImageView, url: String?){
     view.downloadFormUrl(url, view.context)
 }

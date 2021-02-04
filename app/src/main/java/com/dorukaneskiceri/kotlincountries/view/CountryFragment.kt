@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.dorukaneskiceri.kotlincountries.R
+import com.dorukaneskiceri.kotlincountries.databinding.FragmentCountryBinding
 import com.dorukaneskiceri.kotlincountries.util.downloadFormUrl
 import com.dorukaneskiceri.kotlincountries.viewmodel.CountryViewModel
 import kotlinx.android.synthetic.main.fragment_country.*
@@ -15,11 +17,13 @@ class CountryFragment : Fragment() {
 
     private var countryUuid = 0
     private lateinit var countryViewModel: CountryViewModel
+    private lateinit var dataBinding: FragmentCountryBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_country, container, false)
+    ): View {
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_country, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,12 +40,13 @@ class CountryFragment : Fragment() {
     private fun observeLiveData(){
         countryViewModel.country.observe(viewLifecycleOwner, {country ->
             country?.let {
-                textViewCountryName.text = it.countryName
-                textViewCountryCapital.text = it.countryCapital
-                textViewCountryContinental.text = it.countryContinental
-                textViewCountryCurrency.text = it.countryCurrency
-                textViewCountryLanguage.text = it.countryLanguage
-                imageView2.downloadFormUrl(it.countryFlagUrl, requireContext())
+                dataBinding.countryDetail = it
+//                textViewCountryName.text = it.countryName
+//                textViewCountryCapital.text = it.countryCapital
+//                textViewCountryContinental.text = it.countryContinental
+//                textViewCountryCurrency.text = it.countryCurrency
+//                textViewCountryLanguage.text = it.countryLanguage
+//                imageView2.downloadFormUrl(it.countryFlagUrl, requireContext())
             }
         })
     }
